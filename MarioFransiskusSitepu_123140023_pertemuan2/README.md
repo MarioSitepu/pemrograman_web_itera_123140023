@@ -45,8 +45,8 @@ Anda dapat mencoba aplikasi secara langsung di: [https://assignment-master.page.
 ### Langkah 1: Clone Repository
 
 ```bash
-git clone https://github.com/username/aplikasi-manajemen-tugas.git
-cd pemrograman_web_itera_123140023
+git clone https://github.com/MarioSitepu/pemrograman_web_itera_123140023.git
+cd pemrograman_web_itera_123140023/MarioFransiskusSitepu_123140023_pertemuan2
 ```
 
 ### Langkah 2: Buka di Browser
@@ -297,6 +297,36 @@ taskElement.innerHTML = `
         </button>
     </div>
 `;
+```
+
+---
+
+## 🧩 Daftar Fitur ES6+ yang Diimplementasikan
+
+* **let & const** untuk deklarasi variabel sesuai mutabilitas.
+* **Arrow functions**: contoh `init = () => {}`, `saveTasks = async () => {}`, `loadTasks = async () => {}`, `validateForm = (...) => {}`.
+* **Template literals** untuk rendering dinamis elemen tugas.
+* **Async/Await** pada operasi penyimpanan & pemuatan data.
+* **Class** `TaskManager` untuk enkapsulasi state & logika.
+
+**Cuplikan singkat:**
+
+```javascript
+const STORAGE_KEY = 'tasks';
+let tasks = []; // akan dimutasi (tambah/hapus)
+
+class TaskManager {
+  constructor() {
+    this.tasks = [];
+  }
+  init = () => {
+    const form = document.getElementById('taskForm');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // ...
+    });
+  }
+}
 ```
 
 ---
