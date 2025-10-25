@@ -1,4 +1,4 @@
-# Aplikasi Manajemen Tugas Mahasiswa
+# Aplikasi Manajemen Tugas Mahasiswa V2
 
 Aplikasi web berbasis JavaScript yang dirancang khusus untuk membantu mahasiswa mengelola tugas akademik mereka dengan antarmuka futuristik dan animasi yang menarik.
 
