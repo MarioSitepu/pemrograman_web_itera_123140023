@@ -1,0 +1,414 @@
+# 📚 EasyBookApp
+
+Aplikasi Personal Dashboard untuk Manajemen Koleksi Buku yang modern, interaktif, dan mudah digunakan. Aplikasi ini membantu Anda mengelola koleksi buku pribadi dengan fitur CRUD lengkap, penyimpanan lokal, dan antarmuka yang menarik.
+
+## 🎯 Tentang Aplikasi
+
+**EasyBookApp** adalah aplikasi web berbasis React untuk mengelola koleksi buku pribadi. Aplikasi ini memungkinkan pengguna untuk:
+
+- ✅ Menambah buku baru ke koleksi
+- ✏️ Mengedit informasi buku yang sudah ada
+- 🗑️ Menghapus buku dari koleksi
+- 🔍 Mencari buku berdasarkan judul atau penulis
+- 🏷️ Memfilter buku berdasarkan status (Dimiliki, Sedang Dibaca, Ingin Dibeli)
+- 📊 Melihat statistik koleksi buku
+- 💾 Menyimpan data secara lokal di browser menggunakan localStorage
+
+Aplikasi ini dibangun dengan teknologi modern menggunakan React, dan mengimplementasikan berbagai fitur ES6+ untuk kode yang lebih efisien dan mudah dirawat.
+
+---
+
+## ✨ Fitur-Fitur Aplikasi
+
+### Fitur Utama
+- **CRUD Lengkap**: Create, Read, Update, Delete untuk manajemen buku
+- **Penyimpanan Lokal**: Data tersimpan otomatis di localStorage browser
+- **Pencarian Real-time**: Cari buku berdasarkan judul atau nama penulis
+- **Filter Status**: Filter buku berdasarkan status (Dimiliki, Sedang Dibaca, Ingin Dibeli)
+- **Statistik Dashboard**: Lihat ringkasan koleksi buku di halaman statistik
+- **Validasi Form**: Validasi input untuk memastikan data yang dimasukkan valid
+
+### Fitur UI/UX
+- **Desain Modern**: Interface dengan efek glassmorphism dan gradient
+- **Animasi Halus**: Transitions dan animations yang smooth
+- **Responsive Design**: Optimal di desktop, tablet, dan mobile
+- **Visual Feedback**: Pesan error dan sukses yang jelas
+- **Empty States**: Pesan informatif ketika tidak ada buku
+- **Loading States**: Animasi saat memuat data
+
+---
+
+## 📸 Screenshot Aplikasi
+
+### Halaman Utama - Koleksi Buku
+![Halaman Utama](screenshots/home.png)
+*Halaman utama menampilkan form untuk menambah buku, search bar, filter, dan daftar buku*
+
+### Halaman Statistik
+![Halaman Statistik](screenshots/stats.png)
+*Dashboard statistik menampilkan ringkasan koleksi buku dengan card yang menarik*
+
+### Form Tambah/Edit Buku
+![Form Buku](screenshots/form.png)
+*Form dengan layout grid modern dan status selector berbasis card*
+
+---
+
+## 🚀 Cara Menjalankan Aplikasi
+
+### Prasyarat
+- Node.js (versi 14 atau lebih tinggi)
+- npm atau yarn
+
+### Instalasi
+
+1. **Clone repository atau download project**
+```bash
+git clone <repository-url>
+cd mariofransiskussitepu_123140023_pertemuan3
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Jalankan aplikasi**
+```bash
+npm start
+```
+
+Aplikasi akan berjalan di [http://localhost:3000](http://localhost:3000)
+
+### Build untuk Production
+
+```bash
+npm run build
+```
+
+Build files akan tersimpan di folder `build/`
+
+---
+
+## 💻 Fitur ES6+ yang Diimplementasikan
+
+Aplikasi ini mengimplementasikan berbagai fitur modern ES6+ untuk kode yang lebih bersih, efisien, dan mudah dirawat:
+
+### 1. **Let dan Const**
+Penggunaan `let` dan `const` secara tepat untuk deklarasi variabel:
+
+```javascript
+// src/pages/Home/Home.js
+const Home = () => {
+  const { books, addBook, deleteBook } = useBook();
+  const [filter, setFilter] = useState('semua');
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  let processedBooks = books;
+  // ...
+}
+```
+
+**Lokasi Implementasi:**
+- `src/pages/Home/Home.js`
+- `src/components/BookForm/BookForm.js`
+- `src/components/BookItem/BookItem.js`
+- `src/hooks/useLocalStorage.js`
+- Dan semua file komponen lainnya
+
+### 2. **Arrow Functions**
+Implementasi arrow functions untuk fungsi yang lebih ringkas dan menjaga konteks `this`:
+
+```javascript
+// src/components/BookForm/BookForm.js
+const BookForm = ({ onSubmit, initialData, onCancel }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // ...
+  };
+  // ...
+}
+
+// src/pages/Home/Home.js
+const filteredBooks = useMemo(() => {
+  let processedBooks = books;
+  if (filter !== 'semua') {
+    processedBooks = processedBooks.filter((book) => book.status === filter);
+  }
+  return processedBooks;
+}, [books, filter, searchTerm]);
+```
+
+**Lokasi Implementasi:**
+- `src/pages/Home/Home.js` - Komponen Home sebagai arrow function
+- `src/components/BookForm/BookForm.js` - Komponen BookForm
+- `src/components/BookList/BookList.js` - Komponen BookList
+- `src/components/BookItem/BookItem.js` - Komponen BookItem
+- `src/components/SearchBar/SearchBar.js` - Komponen SearchBar
+- `src/components/BookFilter/BookFilter.js` - Komponen BookFilter
+- `src/pages/Stats/Stats.js` - Komponen Stats
+- `src/hooks/useBookStats.js` - Custom hook useBookStats
+- `src/hooks/useLocalStorage.js` - Fungsi async helper
+
+### 3. **Template Literals**
+Penggunaan template literals untuk rendering dinamis dan string interpolation:
+
+```javascript
+// src/pages/Home/Home.js
+const statsMessage = useMemo(() => {
+  const total = books.length;
+  const filtered = filteredBooks.length;
+  if (searchTerm || filter !== 'semua') {
+    return `Menampilkan ${filtered} dari ${total} buku`;
+  }
+  return `Total ${total} buku dalam koleksi`;
+}, [books.length, filteredBooks.length, searchTerm, filter]);
+
+// src/components/BookItem/BookItem.js
+const bookDescription = `Buku "${book.title}" ditulis oleh ${book.author}`;
+
+// src/pages/Stats/Stats.js
+const statCards = [
+  { value: stats.total, label: 'Total Buku', description: `Total ${stats.total} buku dalam koleksi` },
+  { value: stats.owned, label: 'Dimiliki', description: `${stats.owned} buku yang dimiliki` },
+  { value: stats.reading, label: 'Sedang Dibaca', description: `${stats.reading} buku sedang dibaca` },
+  { value: stats.wantToBuy, label: 'Ingin Dibeli', description: `${stats.wantToBuy} buku yang ingin dibeli` },
+];
+```
+
+**Lokasi Implementasi:**
+- `src/pages/Home/Home.js` - Statistik message
+- `src/components/BookItem/BookItem.js` - Deskripsi buku
+- `src/pages/Stats/Stats.js` - Deskripsi statistik cards
+- `src/utils/BookValidator.js` - Pesan validasi error
+
+### 4. **Async/Await dan Promises**
+Implementasi async/await untuk operasi asinkron pada localStorage:
+
+```javascript
+// src/hooks/useLocalStorage.js
+const getLocalStorageAsync = async (key) => {
+  return new Promise((resolve) => {
+    try {
+      const item = window.localStorage.getItem(key);
+      resolve(item ? JSON.parse(item) : null);
+    } catch (error) {
+      console.error('Error reading from localStorage:', error);
+      resolve(null);
+    }
+  });
+};
+
+const setLocalStorageAsync = async (key, value) => {
+  return new Promise((resolve) => {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+      resolve(true);
+    } catch (error) {
+      console.error('Error writing to localStorage:', error);
+      resolve(false);
+    }
+  });
+};
+
+// Menggunakan useEffect untuk sinkronisasi async
+useEffect(() => {
+  const loadData = async () => {
+    const data = await getLocalStorageAsync(key);
+    if (data !== null) {
+      setStoredValue(data);
+    }
+  };
+  loadData();
+}, [key]);
+```
+
+**Lokasi Implementasi:**
+- `src/hooks/useLocalStorage.js` - Fungsi `getLocalStorageAsync()` dan `setLocalStorageAsync()` dengan async/await
+- `src/hooks/useLocalStorage.js` - `useEffect` dengan async function `loadData()`
+
+### 5. **Classes (ES6 Classes)**
+Implementasi class untuk validasi data:
+
+```javascript
+// src/utils/BookValidator.js
+class BookValidator {
+  constructor() {
+    this.minTitleLength = 2;
+    this.maxTitleLength = 200;
+    this.minAuthorLength = 2;
+    this.maxAuthorLength = 100;
+  }
+
+  validateTitle(title) {
+    if (!title || typeof title !== 'string') {
+      return {
+        isValid: false,
+        message: 'Judul harus berupa teks dan tidak boleh kosong.',
+      };
+    }
+    // ...
+  }
+
+  validateAuthor(author) {
+    // ...
+  }
+
+  validateStatus(status) {
+    // ...
+  }
+
+  validateBook(book) {
+    const errors = [];
+    const titleValidation = this.validateTitle(book.title);
+    const authorValidation = this.validateAuthor(book.author);
+    const statusValidation = this.validateStatus(book.status);
+    // ...
+  }
+}
+
+// Penggunaan di BookForm
+const validator = new BookValidator();
+const validation = validator.validateBook({ title, author, status });
+```
+
+**Lokasi Implementasi:**
+- `src/utils/BookValidator.js` - Class `BookValidator` dengan constructor dan methods
+- `src/components/BookForm/BookForm.js` - Instansiasi dan penggunaan `BookValidator`
+
+---
+
+## 📁 Struktur Project
+
+```
+mariofransiskussitepu_123140023_pertemuan3/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── BookForm/          # Form untuk tambah/edit buku
+│   │   ├── BookList/          # Daftar buku
+│   │   ├── BookItem/          # Item buku individual
+│   │   ├── BookFilter/        # Filter berdasarkan status
+│   │   ├── SearchBar/         # Bar pencarian
+│   │   ├── Logo/              # Logo aplikasi
+│   │   └── FloatingParticles/ # Partikel animasi
+│   ├── pages/
+│   │   ├── Home/              # Halaman utama
+│   │   └── Stats/             # Halaman statistik
+│   ├── hooks/
+│   │   ├── useLocalStorage.js # Custom hook untuk localStorage
+│   │   └── useBookStats.js    # Custom hook untuk statistik
+│   ├── context/
+│   │   └── BookContext.js     # Context API untuk state management
+│   ├── utils/
+│   │   └── BookValidator.js   # Class untuk validasi
+│   ├── App.js
+│   └── index.js
+└── package.json
+```
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+- **React** - Library JavaScript untuk membangun UI
+- **React Router** - Routing untuk single page application
+- **CSS3** - Styling dengan modern CSS features
+- **localStorage API** - Penyimpanan data lokal di browser
+- **ES6+ Features** - Arrow functions, template literals, async/await, classes
+
+---
+
+## 📝 Cara Menggunakan
+
+1. **Menambah Buku Baru**
+   - Isi form di bagian atas halaman
+   - Masukkan judul buku dan nama penulis
+   - Pilih status buku (Dimiliki, Sedang Dibaca, atau Ingin Dibeli)
+   - Klik tombol "Tambah Buku"
+
+2. **Mencari Buku**
+   - Gunakan search bar untuk mencari berdasarkan judul atau penulis
+   - Pencarian dilakukan secara real-time
+
+3. **Memfilter Buku**
+   - Klik tombol filter (Semua, Dimiliki, Sedang Dibaca, Ingin Dibeli)
+   - Daftar akan otomatis terfilter sesuai pilihan
+
+4. **Mengedit Buku**
+   - Klik tombol "Edit" pada buku yang ingin diedit
+   - Form akan terisi dengan data buku tersebut
+   - Ubah data yang diinginkan dan klik "Perbarui Buku"
+
+5. **Menghapus Buku**
+   - Klik tombol "Hapus" pada buku yang ingin dihapus
+   - Buku akan langsung terhapus dari koleksi
+
+6. **Melihat Statistik**
+   - Klik menu "Statistik" di navbar
+   - Lihat ringkasan koleksi buku dengan statistik visual
+
+---
+
+## 🎨 Fitur Desain
+
+### Glassmorphism Effect
+- Background blur dan transparansi untuk efek kaca modern
+- Border dengan opacity rendah
+- Shadow yang halus
+
+### Animations
+- Fade in animations untuk komponen
+- Slide in animations untuk list items
+- Hover effects dengan transform dan shadow
+- Ripple effects pada buttons
+- Staggered animations untuk multiple items
+
+### Color Scheme
+- Primary: Purple-Blue Gradient (#667eea → #764ba2)
+- Success: Green Gradient
+- Warning: Yellow Gradient
+- Danger: Red Gradient
+
+---
+
+## 📊 Statistik Implementasi ES6+
+
+| Fitur ES6+ | Jumlah Implementasi | Lokasi File |
+|------------|---------------------|-------------|
+| **Let & Const** | 50+ | Semua komponen React |
+| **Arrow Functions** | 25+ | Semua komponen, hooks, dan utilities |
+| **Template Literals** | 10+ | Home.js, BookItem.js, Stats.js, BookValidator.js |
+| **Async/Await** | 3 | useLocalStorage.js |
+| **Classes** | 1 | BookValidator.js |
+
+---
+
+## 👤 Author
+
+**Mario Fransiskus Sitepu**
+
+---
+
+## 📌 Catatan
+
+- Data disimpan di localStorage browser, sehingga data akan hilang jika:
+  - Browser cache dihapus
+  - Mode incognito/private digunakan
+  - Data localStorage dihapus manual
+
+- Untuk penggunaan yang lebih baik, disarankan menggunakan browser modern dengan dukungan ES6+
+
+---
+
+## 🔄 Versi
+
+**Version 1.0.0**
+
+Aplikasi ini dikembangkan sebagai bagian dari tugas praktikum Pemrograman Web.
+
+---
+
+*Dibuat dengan ❤️ menggunakan React dan modern JavaScript*

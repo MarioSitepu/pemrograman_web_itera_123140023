@@ -1,0 +1,62 @@
+/* src/components/SearchBar/SearchBar.css */
+.search-bar {
+  margin-bottom: 1.5rem;
+  position: relative;
+  animation: slideIn 0.5s ease-out;
+}
+
+.search-bar::before {
+  content: '🔍';
+  position: absolute;
+  left: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.3rem;
+  z-index: 2;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.search-bar:hover::before,
+.search-bar:has(input:focus)::before {
+  transform: translateY(-50%) scale(1.2) rotate(15deg);
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 1rem 1.25rem 1rem 3.5rem;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  font-family: inherit;
+}
+
+.search-bar input::placeholder {
+  color: var(--text-light);
+}
+
+.search-bar input:hover {
+  border-color: rgba(102, 126, 234, 0.5);
+  box-shadow: var(--shadow-lg);
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 
+    0 0 0 4px rgba(102, 126, 234, 0.2), 
+    var(--shadow-xl),
+    0 0 30px rgba(102, 126, 234, 0.3);
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 1);
+}
+
+.search-bar:has(input:focus)::before {
+  animation: pulse 1.5s ease-in-out infinite;
+}
