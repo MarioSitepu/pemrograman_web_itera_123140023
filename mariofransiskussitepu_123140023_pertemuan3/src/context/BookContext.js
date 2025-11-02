@@ -26,7 +26,15 @@ export const BookProvider = ({ children }) => {
 
   // Fungsi untuk menghapus buku
   const deleteBook = (id) => {
-    setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+    // Konfirmasi sebelum menghapus
+    const book = books.find((b) => b.id === id);
+    const confirmMessage = book
+      ? `Apakah Anda yakin ingin menghapus buku "${book.title}"?`
+      : 'Apakah Anda yakin ingin menghapus buku ini?';
+    
+    if (window.confirm(confirmMessage)) {
+      setBooks((prevBooks) => prevBooks.filter((book) => book.id !== id));
+    }
   };
 
   // Fungsi untuk memperbarui buku

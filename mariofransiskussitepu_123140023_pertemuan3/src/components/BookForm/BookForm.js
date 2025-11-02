@@ -10,12 +10,26 @@ const BookForm = ({ onSubmit, initialData, onCancel }) => {
   const [error, setError] = useState('');
   const validator = new BookValidator();
 
-  // Mengisi form jika ada data awal (mode edit)
+  // Mengisi form jika ada data awal (mode edit) atau reset jika tidak ada
   useEffect(() => {
     if (initialData) {
-      setTitle(initialData.title);
-      setAuthor(initialData.author);
-      setStatus(initialData.status);
+      setTitle(initialData.title || '');
+      setAuthor(initialData.author || '');
+      setStatus(initialData.status || 'milik');
+      setError('');
+      // Scroll ke form saat mode edit untuk UX yang lebih baik
+      setTimeout(() => {
+        const formElement = document.querySelector('.book-form');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      // Reset form ketika tidak ada initialData (setelah edit selesai atau cancel)
+      setTitle('');
+      setAuthor('');
+      setStatus('milik');
+      setError('');
     }
   }, [initialData]);
 
@@ -32,12 +46,7 @@ const BookForm = ({ onSubmit, initialData, onCancel }) => {
     
     setError('');
     onSubmit({ title, author, status });
-    // Reset form hanya jika menambah buku baru
-    if (!initialData) {
-      setTitle('');
-      setAuthor('');
-      setStatus('milik');
-    }
+    // Form akan di-reset melalui useEffect ketika initialData berubah menjadi null
   };
 
   return (

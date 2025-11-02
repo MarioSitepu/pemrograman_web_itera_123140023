@@ -28,11 +28,37 @@ const BookItem = ({ book, onEdit, onDelete }) => {
         </span>
       </div>
       <div className="book-actions">
-        <button onClick={() => onEdit(book)} className="btn-edit">
+        <button 
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Edit button clicked', book);
+            if (onEdit && typeof onEdit === 'function') {
+              onEdit(book);
+            } else {
+              console.warn('onEdit is not a function or not provided');
+            }
+          }} 
+          className="btn-edit"
+        >
           <span className="btn-action-icon">✏️</span>
           <span>Edit</span>
         </button>
-        <button onClick={() => onDelete(book.id)} className="btn-delete">
+        <button 
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Delete button clicked', book.id);
+            if (onDelete && typeof onDelete === 'function') {
+              onDelete(book.id);
+            } else {
+              console.warn('onDelete is not a function or not provided');
+            }
+          }} 
+          className="btn-delete"
+        >
           <span className="btn-action-icon">🗑️</span>
           <span>Hapus</span>
         </button>

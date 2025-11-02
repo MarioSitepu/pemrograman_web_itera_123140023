@@ -90,6 +90,105 @@ Build files akan tersimpan di folder `build/`
 
 ---
 
+## 🚀 Cara Deploy ke Netlify
+
+Aplikasi ini sudah dikonfigurasi untuk deploy ke Netlify dengan mudah. Ada beberapa cara yang bisa digunakan:
+
+### Metode 1: Deploy via Netlify UI (Paling Mudah)
+
+1. **Persiapkan Build**
+   ```bash
+   npm run build
+   ```
+   Pastikan folder `build/` berhasil dibuat tanpa error.
+
+2. **Login ke Netlify**
+   - Buka [https://app.netlify.com](https://app.netlify.com)
+   - Login atau buat akun baru (bisa menggunakan GitHub, GitLab, atau email)
+
+3. **Deploy dengan Drag & Drop**
+   - Di dashboard Netlify, klik **"Add new site"** → **"Deploy manually"**
+   - Drag & drop folder `build/` ke area yang disediakan
+   - Tunggu hingga deploy selesai
+   - Netlify akan memberikan URL untuk aplikasi Anda
+
+### Metode 2: Deploy via Netlify CLI
+
+1. **Install Netlify CLI**
+   ```bash
+   npm install -g netlify-cli
+   ```
+
+2. **Login ke Netlify**
+   ```bash
+   netlify login
+   ```
+
+3. **Deploy Aplikasi**
+   ```bash
+   # Build aplikasi terlebih dahulu
+   npm run build
+   
+   # Deploy ke Netlify
+   netlify deploy --prod --dir=build
+   ```
+
+   Atau untuk deploy preview pertama kali:
+   ```bash
+   netlify deploy --dir=build
+   ```
+
+### Metode 3: Deploy via Git (Continuous Deployment)
+
+1. **Push Project ke GitHub/GitLab/Bitbucket**
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin <repository-url>
+   git push -u origin main
+   ```
+
+2. **Connect Repository ke Netlify**
+   - Di dashboard Netlify, klik **"Add new site"** → **"Import an existing project"**
+   - Pilih provider Git Anda (GitHub/GitLab/Bitbucket)
+   - Authorize dan pilih repository Anda
+
+3. **Konfigurasi Build Settings**
+   Netlify akan otomatis mendeteksi konfigurasi dari file `netlify.toml`:
+   - **Build command:** `npm run build`
+   - **Publish directory:** `build`
+   
+   Jika tidak terdeteksi otomatis, masukkan manual:
+   - Build command: `npm run build`
+   - Publish directory: `build`
+
+4. **Deploy**
+   - Klik **"Deploy site"**
+   - Netlify akan otomatis build dan deploy aplikasi
+   - Setiap kali Anda push ke repository, Netlify akan otomatis deploy ulang
+
+### Catatan Penting
+
+- ✅ File `netlify.toml` sudah dikonfigurasi untuk menangani routing React Router (SPA)
+- ✅ File `public/_redirects` juga sudah disiapkan sebagai backup untuk routing
+- ✅ Setelah deploy, pastikan aplikasi bisa diakses melalui URL yang diberikan Netlify
+- ✅ Jika menggunakan routing (seperti `/stats`), pastikan semua route berfungsi dengan benar
+
+### Troubleshooting
+
+**Problem:** Route tidak berfungsi saat diakses langsung (misal `/stats`)
+- **Solution:** File `netlify.toml` dan `_redirects` sudah dikonfigurasi untuk menangani ini. Pastikan kedua file sudah ter-push ke repository.
+
+**Problem:** Build gagal
+- **Solution:** Pastikan semua dependencies terinstall dengan `npm install` dan tidak ada error saat build lokal.
+
+**Problem:** Aplikasi tidak muncul setelah deploy
+- **Solution:** Pastikan publish directory di Netlify diset ke `build`, bukan `public` atau folder lain.
+
+---
+
 ## 💻 Fitur ES6+ yang Diimplementasikan
 
 Aplikasi ini mengimplementasikan berbagai fitur modern ES6+ untuk kode yang lebih bersih, efisien, dan mudah dirawat:
