@@ -64,7 +64,7 @@ Aplikasi ini dibangun dengan teknologi modern menggunakan React, dan mengimpleme
 
 1. **Clone repository atau download project**
 ```bash
-git clone <repository-url>
+git clone https://github.com/MarioSitepu/pemrograman_web_itera_123140023.git
 cd mariofransiskussitepu_123140023_pertemuan3
 ```
 
@@ -381,32 +381,119 @@ const validation = validator.validateBook({ title, author, status });
 
 ```
 mariofransiskussitepu_123140023_pertemuan3/
-├── public/
+├── public/                          # Static files
+│   ├── index.html                   # HTML template
+│   ├── favicon.ico                  # Favicon
+│   ├── favicon2.ico
+│   ├── favicon3.ico
+│   ├── logo192.png                  # Logo untuk PWA
+│   ├── logo512.png
+│   ├── manifest.json                # PWA manifest
+│   ├── robots.txt                   # SEO robots file
+│   └── _redirects                   # Netlify redirects untuk SPA routing
+│
+├── src/                             # Source code
+│   ├── components/                  # Reusable components
+│   │   ├── BookForm/                # Form untuk tambah/edit buku
+│   │   │   ├── BookForm.js
+│   │   │   ├── BookForm.css
+│   │   │   └── BookForm.test.js
+│   │   ├── BookList/                # Daftar buku
+│   │   │   ├── BookList.js
+│   │   │   ├── BookList.css
+│   │   │   └── BookList.test.js
+│   │   ├── BookItem/                # Item buku individual
+│   │   │   ├── BookItem.js
+│   │   │   └── BookItem.css
+│   │   ├── BookFilter/              # Filter berdasarkan status
+│   │   │   ├── BookFilter.js
+│   │   │   └── BookFilter.css
+│   │   ├── SearchBar/               # Bar pencarian
+│   │   │   ├── SearchBar.js
+│   │   │   └── SearchBar.css
+│   │   ├── Logo/                    # Logo aplikasi
+│   │   │   ├── Logo.js
+│   │   │   └── Logo.css
+│   │   └── FloatingParticles/       # Partikel animasi background
+│   │       ├── FloatingParticles.js
+│   │       └── FloatingParticles.css
+│   │
+│   ├── pages/                       # Page components
+│   │   ├── Home/                    # Halaman utama (koleksi buku)
+│   │   │   ├── Home.js
+│   │   │   ├── Home.css
+│   │   │   └── Home.test.js
+│   │   └── Stats/                  # Halaman statistik
+│   │       ├── Stats.js
+│   │       └── Stats.css
+│   │
+│   ├── hooks/                      # Custom React hooks
+│   │   ├── useLocalStorage.js      # Hook untuk localStorage operations
+│   │   ├── useLocalStorage.test.js
+│   │   ├── useBookStats.js         # Hook untuk menghitung statistik buku
+│   │   └── useBookStats.test.js
+│   │
+│   ├── context/                    # React Context
+│   │   └── BookContext.js          # Context API untuk state management global
+│   │
+│   ├── utils/                      # Utility functions
+│   │   └── BookValidator.js        # Class untuk validasi data buku
+│   │
+│   ├── App.js                      # Main App component
+│   ├── App.css                     # Global app styles
+│   ├── App.test.js                 # App tests
+│   ├── index.js                    # Entry point aplikasi
+│   ├── index.css                   # Global styles
+│   ├── setupTests.js              # Test configuration
+│   ├── reportWebVitals.js          # Web vitals reporting
+│   ├── logo.svg                    # React logo (default)
+│   └── logobuku.png                # Logo buku asset
+│
+├── screenshots/                    # Screenshots aplikasi
+│   ├── home.png                    # Screenshot halaman utama
+│   ├── form.png                    # Screenshot form buku
+│   └── stats.png                   # Screenshot halaman statistik
+│
+├── build/                          # Production build (dibuat setelah npm run build)
 │   ├── index.html
+│   ├── static/
+│   │   ├── css/                    # Compiled CSS
+│   │   ├── js/                     # Compiled JavaScript
+│   │   └── media/                  # Optimized media files
 │   └── ...
-├── src/
-│   ├── components/
-│   │   ├── BookForm/          # Form untuk tambah/edit buku
-│   │   ├── BookList/          # Daftar buku
-│   │   ├── BookItem/          # Item buku individual
-│   │   ├── BookFilter/        # Filter berdasarkan status
-│   │   ├── SearchBar/         # Bar pencarian
-│   │   ├── Logo/              # Logo aplikasi
-│   │   └── FloatingParticles/ # Partikel animasi
-│   ├── pages/
-│   │   ├── Home/              # Halaman utama
-│   │   └── Stats/             # Halaman statistik
-│   ├── hooks/
-│   │   ├── useLocalStorage.js # Custom hook untuk localStorage
-│   │   └── useBookStats.js    # Custom hook untuk statistik
-│   ├── context/
-│   │   └── BookContext.js     # Context API untuk state management
-│   ├── utils/
-│   │   └── BookValidator.js   # Class untuk validasi
-│   ├── App.js
-│   └── index.js
-└── package.json
+│
+├── node_modules/                   # Dependencies (auto-generated)
+├── .git/                           # Git repository
+├── .gitignore                     # Git ignore rules
+├── netlify.toml                    # Netlify deployment configuration
+├── package.json                    # Project dependencies & scripts
+├── package-lock.json               # Locked dependency versions
+└── README.md                       # Dokumentasi proyek
 ```
+
+### Penjelasan Struktur
+
+#### 📂 `public/`
+Berisi file-file static yang akan di-copy ke folder `build/` saat build production. Termasuk HTML template, favicon, dan file konfigurasi.
+
+#### 📂 `src/`
+Folder utama untuk source code aplikasi:
+- **components/**: Komponen React yang reusable, diorganisir per komponen dengan folder sendiri
+- **pages/**: Komponen halaman utama aplikasi (Home, Stats)
+- **hooks/**: Custom hooks untuk logic yang bisa di-reuse
+- **context/**: React Context untuk state management global
+- **utils/**: Utility functions dan helper classes
+
+#### 📂 `screenshots/`
+Screenshot aplikasi untuk dokumentasi.
+
+#### 📂 `build/`
+Folder output setelah menjalankan `npm run build`. Folder ini berisi file-file yang sudah di-optimize dan siap untuk di-deploy ke production.
+
+#### 📄 File Konfigurasi
+- **netlify.toml**: Konfigurasi untuk deploy di Netlify
+- **package.json**: Dependencies dan npm scripts
+- **.gitignore**: File yang di-ignore oleh Git
 
 ---
 
