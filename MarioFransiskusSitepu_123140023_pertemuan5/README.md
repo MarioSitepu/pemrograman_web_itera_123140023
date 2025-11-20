@@ -241,63 +241,23 @@ Masukkan ID item yang ingin dipinjam: LIB1000
 
 ## 📸 Screenshot Hasil Running Program
 
-### Menu Utama
-```
-================================================================================
-                    SISTEM MANAJEMEN PERPUSTAKAAN SEDERHANA
-                         Menggunakan Konsep OOP Python
-================================================================================
+### 1. Menu Utama
 
-================================================================================
-MENU UTAMA
-================================================================================
-1. Tampilkan Semua Item
-2. Tampilkan Item yang Tersedia
-3. Tambah Item Baru
-4. Cari Item berdasarkan ID
-5. Cari Item berdasarkan Judul
-6. Cari Item berdasarkan Penulis/Editor
-7. Pinjam Item
-8. Kembalikan Item
-9. Tampilkan Statistik Perpustakaan
-0. Keluar
-================================================================================
-```
+Menu utama program menampilkan semua opsi yang tersedia untuk mengelola perpustakaan.
 
-### Tampilan Semua Item
-```
-================================================================================
-Perpustakaan ITERA
-================================================================================
-+----------+----------+--------------------------------------+----------------+-------+----------+
-| ID       | Tipe     | Judul                                | Penulis/Editor | Tahun | Status   |
-+==========+==========+======================================+================+=======+==========+
-| LIB1000  | Book     | Pemrograman Python untuk Pemula      | John Doe       | 2023  | Dipinjam |
-+----------+----------+--------------------------------------+----------------+-------+----------+
-| LIB1001  | Book     | Struktur Data dan Algoritma          | Jane Smith     | 2022  | Tersedia |
-+----------+----------+--------------------------------------+----------------+-------+----------+
-| LIB1002  | Book     | Database Management System           | Bob Johnson    | 2024  | Tersedia |
-+----------+----------+--------------------------------------+----------------+-------+----------+
-| LIB1003  | Magazine | Teknologi Informatika                | Tim Editor IT  | 2024  | Tersedia |
-+----------+----------+--------------------------------------+----------------+-------+----------+
-| LIB1004  | Magazine | Computer Science Today               | Dr. Alice Brown| 2023  | Tersedia |
-+----------+----------+--------------------------------------+----------------+-------+----------+
-================================================================================
-```
+![Menu Utama](mainmenu.png)
 
-### Statistik Perpustakaan
-```
-================================================================================
-STATISTIK PERPUSTAKAAN
-================================================================================
-Nama Perpustakaan     : Perpustakaan ITERA
-Total Item            : 5
-  - Buku              : 3
-  - Majalah           : 2
-Item Tersedia         : 4
-Item Dipinjam         : 1
-================================================================================
-```
+### 2. Tampilan Semua Item (Menu 1)
+
+Fitur untuk menampilkan semua item yang ada di perpustakaan, termasuk buku dan majalah dengan status ketersediaannya.
+
+![Tampilan Semua Item](menu1 .png)
+
+### 3. Keluar dari Program
+
+Pesan terima kasih yang ditampilkan ketika pengguna memilih untuk keluar dari program.
+
+![Keluar Program](keluar.png)
 
 ## 🔍 Detail Implementasi
 
