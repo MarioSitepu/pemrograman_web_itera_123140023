@@ -251,7 +251,7 @@ Menu utama program menampilkan semua opsi yang tersedia untuk mengelola perpusta
 
 Fitur untuk menampilkan semua item yang ada di perpustakaan, termasuk buku dan majalah dengan status ketersediaannya.
 
-![Tampilan Semua Item](menu1 .png)
+![Tampilan Semua Item](menu1.png)
 
 ### 3. Keluar dari Program
 
